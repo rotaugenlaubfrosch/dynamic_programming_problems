@@ -1,11 +1,10 @@
 package dynamic_programming;
 
-public class longest_common_substring {
+public class longest_common_substring extends dp_problem {
 
 	public static void main(String[] args) {
 		String x = getstring(10);
 		String y = getstring(10);
-		System.out.println("String x: " + x + " String y: " + y);
 		int m = x.length();
 		int n = y.length();
 
@@ -46,14 +45,5 @@ public class longest_common_substring {
 			}
 		}
 		return mem;
-	}
-
-	public static String getstring(int length) {
-		String result = "";
-		String alphabet = "ABCDEFG";
-		while (result.length() < length) {
-			result += alphabet.charAt((int) (Math.random() * 6));
-		}
-		return result;
 	}
 }
