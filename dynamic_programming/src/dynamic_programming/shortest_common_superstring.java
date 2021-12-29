@@ -5,9 +5,10 @@ public class shortest_common_superstring extends dp_problem {
 	public static void main(String[] args) {
 		String x = getstring(10);
 		String y = getstring(10);
-		
+
 		// Naive approach (recursion, without memoization)
-		System.out.println("SCS: " + recursion(x, y));
+		System.out.println("SCS: " + recursion(x, y).length());
+		System.out.println(construct_dp_table(x, y)[x.length()][y.length()]);
 	}
 
 	// Naive approach for SCS problem (recursion, without memoization)
@@ -19,7 +20,8 @@ public class shortest_common_superstring extends dp_problem {
 
 		// check if last characters are equal
 		if (x.charAt(x.length() - 1) == y.charAt(y.length() - 1)) {
-			return recursion(x.substring(0, x.length() - 1), y.substring(0, y.length() - 1)) + x.substring(x.length() - 1);
+			return recursion(x.substring(0, x.length() - 1), y.substring(0, y.length() - 1))
+					+ x.substring(x.length() - 1);
 		}
 
 		// calculate both variants
@@ -36,10 +38,22 @@ public class shortest_common_superstring extends dp_problem {
 	// DP approach
 	public static int[][] construct_dp_table(String x, String y) {
 		int[][] mem = new int[x.length() + 1][y.length() + 1];
-		
-		
-		
+
+		for (int i = 0; i < mem.length; i++) {
+			for (int j = 0; j < mem[0].length; j++) {
+				if (i == 0) {
+					mem[i][j] = j;
+				} else if (j == 0) {
+					mem[i][j] = i;
+				} else if (x.charAt(i - 1) == y.charAt(j - 1)) {
+					mem[i][j] = mem[i - 1][j - 1] + 1;
+				} else {
+					mem[i][j] = Math.min(mem[i - 1][j] + 1, mem[i][j - 1] + 1);
+				}
+			}
+		}
+
 		return mem;
 	}
-	
+
 }
