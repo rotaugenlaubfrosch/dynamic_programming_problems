@@ -9,11 +9,11 @@ public class matrix_multiplication extends dp_problem {
 		int n = 5;
 		// matrices are of size [i]x[i-1] (i>=1)
 		int[] input = getintegers(n);
-		
-		for(int i = 0; i < input.length; i++) {
+
+		for (int i = 0; i < input.length; i++) {
 			input[i] += 5;
 		}
-		
+
 		System.out.println("Array: " + Arrays.toString(input));
 
 		int[][] dp_table = construct_dp_table(input);
@@ -24,7 +24,7 @@ public class matrix_multiplication extends dp_problem {
 
 	public static int[][] construct_dp_table(int[] input) {
 		int n = input.length;
-		
+
 		int[][] mem = new int[n + 1][n + 1];
 
 		for (int i = 2; i <= n; i++) {
