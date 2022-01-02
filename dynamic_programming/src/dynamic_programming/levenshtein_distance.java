@@ -5,7 +5,8 @@ public class levenshtein_distance extends dp_problem {
 	public static void main(String[] args) {
 		String x = getstring(10);
 		String y = getstring(10);
-		
+		x = "Saturday";
+		y = "Sundady";
 		// Find Levenshtein distance
 		int[][] dp_table = new int[x.length() + 1][y.length() + 1];
 		int cost;
@@ -19,7 +20,7 @@ public class levenshtein_distance extends dp_problem {
 					} else {
 						cost = 1;
 					}
-					dp_table[i][j] = Math.min(dp_table[i - 1][j - 1] + 1,
+					dp_table[i][j] = Math.min(dp_table[i - 1][j] + 1,
 							Math.min(dp_table[i][j - 1] + 1, dp_table[i - 1][j - 1] + cost));
 				}
 			}
